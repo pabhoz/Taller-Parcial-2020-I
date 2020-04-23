@@ -13,15 +13,24 @@
  */
 class CharacterFactory implements ICharacterFactory{
     
-    public static function getMage(string $name, string $house = null): \Mage {
+    public static function getCharacter(int $id): \ICharacter{
+        $data = Character::getModel($id);
+        $className = "new".ucfirst(Character::getClassName($data["characterClassId"]));
+        $character = CharacterFactory::{$className}($data["name"]);
+        $character->setId($data["id"]);
+        $character->setLevel($data["level"]);
+        return $character;
+    }
+    
+    public static function newMage(string $name, string $house = null): \Mage {
         return new Mage($name, $house);
     }
 
-    public static function getRogue(string $name): \Rogue {
+    public static function newRogue(string $name): \Rogue {
         
     }
 
-    public static function getWarrior(string $name): \Warrior {
+    public static function newWarrior(string $name): \Warrior {
         
     }
 

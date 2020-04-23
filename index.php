@@ -8,3 +8,13 @@
 require_once './config.php';
 require_once './mvcBootstrap.php';
 
+$character = CharacterFactory::getCharacter(1);
+$character->setLevel(10);
+$character->update();
+print_r($character);
+
+// $harry = CharacterFactory::newMage("Harry");
+// $harry->create();
+
+// $voldemort = CharacterFactory::newMage("Voldemort");
+// $voldemort->create();
